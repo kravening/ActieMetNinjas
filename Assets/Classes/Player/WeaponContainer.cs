@@ -17,7 +17,7 @@ public class WeaponContainer : MonoBehaviour {
 
     public void toggleBool()
     {
-        if (weapon.GetComponent<WeaponBase>().isPickup = true)
+        if (weapon.GetComponent<WeaponBase>().isPickup == true)
         {
             weapon.GetComponent<WeaponBase>().isPickup = false;
         }

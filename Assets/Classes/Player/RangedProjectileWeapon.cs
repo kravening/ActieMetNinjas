@@ -15,18 +15,38 @@ public class RangedProjectileWeapon : WeaponBase {
         {
             canAttack = true;
         }
+        if(weaponAmmo <= 0)
+        {
+            isReloading = true;
+            reloadTimeStamp = Time.time + reloadTime;
+            weaponAmmo = baseWeaponAmmo;
+        }
+        if(Time.time > reloadTimeStamp)
+        {
+            isReloading = false;
+        }
 	}
 
-    public void instantiateBullet()
+    public void InstantiateBullet()
     {
-        if (!isPickup)
+        if (!isPickup && !isReloading)
         {
             if (canAttack)
             {
                 Instantiate(bullet, muzzlePosition.transform.position, transform.rotation);
                 canAttack = false;
                 attackTimeStamp = Time.time + attackCooldownPeriod;
+                weaponAmmo--;
+            }
+            else
+            {
+
             }
         }
+    }
+
+    public void ManualReload()
+    {
+        weaponAmmo = 0;
     }
 }

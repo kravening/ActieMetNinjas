@@ -10,6 +10,7 @@ public class Xbox360Wired_InputController : MonoBehaviour {
 
     //behaviourModifiers
     [SerializeField]private float deadZoneAmount;
+    [SerializeField]private float triggerPressedSensitivity;
 
     //for reading
     public float leftStickAngle;
@@ -26,6 +27,8 @@ public class Xbox360Wired_InputController : MonoBehaviour {
     //bools for buttons
     private bool leftShoulder = false;
     private bool rightShoulder = false;
+    private bool leftTrigger = false;
+    private bool rightTrigger = false;
 
     private bool aButton = false;
     private bool bButton = false;
@@ -74,9 +77,17 @@ public class Xbox360Wired_InputController : MonoBehaviour {
     {
         if(leftShoulder == true)
         {
-            GetComponent<WeaponController>().Attack(0);
+            GetComponent<WeaponController>().ManualReload(0);
         }
         if (rightShoulder == true)
+        {
+            GetComponent<WeaponController>().ManualReload(1);
+        }
+        if(leftTrigger == true)
+        {
+            GetComponent<WeaponController>().Attack(0);
+        }
+        if(rightTrigger == true)
         {
             GetComponent<WeaponController>().Attack(1);
         }
@@ -108,6 +119,16 @@ public class Xbox360Wired_InputController : MonoBehaviour {
         {
             rightShoulder = true;
         }
+        if (prevState.Triggers.Left >= triggerPressedSensitivity && leftTrigger == false)
+        {
+            leftTrigger = true;
+        }
+        if (prevState.Triggers.Right >= triggerPressedSensitivity && rightTrigger == false)
+        {
+            rightTrigger = true;
+        }
+
+
 
         // buttons
         if (prevState.Buttons.A == ButtonState.Released && state.Buttons.A == ButtonState.Pressed)
@@ -137,6 +158,15 @@ public class Xbox360Wired_InputController : MonoBehaviour {
         if (prevState.Buttons.RightShoulder == ButtonState.Pressed && state.Buttons.RightShoulder == ButtonState.Released)
         {
             rightShoulder = false;
+        }
+
+        if (prevState.Triggers.Left <= triggerPressedSensitivity && leftTrigger == true)
+        {
+            leftTrigger = false;
+        }
+        if (prevState.Triggers.Right <= triggerPressedSensitivity && rightTrigger == true)
+        {
+            rightTrigger = false;
         }
 
         if (prevState.Buttons.A == ButtonState.Pressed && state.Buttons.A == ButtonState.Released)

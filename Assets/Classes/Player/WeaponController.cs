@@ -11,17 +11,34 @@ public class WeaponController : MonoBehaviour {
     {
         if(wichWeapon == 0)// left weapon
         {
-            leftWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().instantiateBullet();
+            leftWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().InstantiateBullet();
             //Debug.Log("left");
         }else if(wichWeapon == 1) // right weapon
         {
            //Debug.Log("right");
            //change it so it checks the weapon type that is equiped in a function that returns a string or whatever.
-           rightWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().instantiateBullet();
+           rightWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().InstantiateBullet();
         }
         else
         {
-            Debug.Log("this doesn't work did you give me the wrong value?");
+            Debug.Log("Attack : this doesn't work did you give me the wrong value?");
+        }
+    }
+
+    public void ManualReload(int wichWeapon)
+    {
+        if (wichWeapon == 0)// left weapon
+        {
+            leftWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().ManualReload();
+        }
+        else if (wichWeapon == 1) // right weapon
+        {
+            //change it so it checks the weapon type that is equiped in a function that returns a string or whatever.
+            rightWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().ManualReload();
+        }
+        else
+        {
+            Debug.Log("Reload : this doesn't work did you give me the wrong value?");
         }
     }
 

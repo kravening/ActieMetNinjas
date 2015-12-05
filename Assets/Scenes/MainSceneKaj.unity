@@ -775,12 +775,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 1
   weaponType: Ranged
-  weaponAmmo: 100
-  attackCooldownPeriod: .5
+  weaponAmmo: 128
+  baseWeaponAmmo: 128
+  attackCooldownPeriod: .0250000004
   reloadTime: 8
   attackTimeStamp: 0
+  reloadTimeStamp: 0
   isAutomatic: 0
   canAttack: 0
+  isReloading: 0
   isPickup: 0
   bullet: {fileID: 162578, guid: c039e184f45f9dd4ba049ad4fce74f1e, type: 2}
   muzzlePosition: {fileID: 1898260787}
@@ -1149,6 +1152,7 @@ GameObject:
   - 114: {fileID: 1252703400}
   - 114: {fileID: 1252703399}
   - 114: {fileID: 1252703402}
+  - 114: {fileID: 1252703404}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1200,7 +1204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179ab39f2f417f54d941a2ff1313a3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadZoneAmount: .200000003
+  deadZoneAmount: .100000001
+  triggerPressedSensitivity: .5
   leftStickAngle: 0
   rightStickAngle: 0
   rightStickActive: 0
@@ -1240,6 +1245,17 @@ CharacterController:
   m_SkinWidth: .0799999982
   m_MinMoveDistance: .00100000005
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1252703404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252703398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa84c89caa317cb448108a955eb734bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1338705602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,12 +1287,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 1
   weaponType: Ranged
-  weaponAmmo: 100
-  attackCooldownPeriod: .5
+  weaponAmmo: 128
+  baseWeaponAmmo: 128
+  attackCooldownPeriod: .0250000004
   reloadTime: 8
   attackTimeStamp: 0
+  reloadTimeStamp: 0
   isAutomatic: 0
   canAttack: 0
+  isReloading: 0
   isPickup: 0
   bullet: {fileID: 162578, guid: c039e184f45f9dd4ba049ad4fce74f1e, type: 2}
   muzzlePosition: {fileID: 85243704}
