@@ -12,10 +12,10 @@ public class WeaponController : MonoBehaviour {
         switch (wichWeapon)
         {
             case "leftWeapon":
-                leftWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().InstantiateBullet();
+                leftWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().Attack();
                 break;
             case "rightWeapon":
-                rightWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().InstantiateBullet();
+                rightWeaponSlot.GetComponent<WeaponContainer>().weapon.GetComponent<RangedProjectileWeapon>().Attack();
                 break;
         }
     }

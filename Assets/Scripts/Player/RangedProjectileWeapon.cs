@@ -7,6 +7,8 @@ public class RangedProjectileWeapon : WeaponBase
     private GameObject bullet;
     [SerializeField]
     private GameObject muzzlePosition;
+    [SerializeField]
+    private float currentAngleOffset;
 
     // behaviour Modifiers
     [SerializeField]
@@ -16,12 +18,14 @@ public class RangedProjectileWeapon : WeaponBase
     [SerializeField]
     private int projectileAmount;
     [SerializeField]
-    private float multipleBulletSpacing;
-
+    private float BulletSpacing;
+    [SerializeField]
+    private bool isShotgun;
     // Use this for initialization
     void Start()
     {
         findPlayer();
+        ResetAngleOffset();
     }
 
     // Update is called once per frame
@@ -29,7 +33,6 @@ public class RangedProjectileWeapon : WeaponBase
     {
         CheckBools();
     }
-
     private void CheckBools()
     {
         if (!canAttack && Time.time > attackTimeStamp)                                         //weapon attack cooldown check
@@ -70,7 +73,7 @@ public class RangedProjectileWeapon : WeaponBase
         Debug.Log(ammoController.PlayerAmmo);
     }
 
-    public void InstantiateBullet()
+    public void Attack()
     {
         if (weaponAmmo >= 1)
         {
@@ -119,31 +122,42 @@ public class RangedProjectileWeapon : WeaponBase
         {
             for (int i = 0; i < projectileAmount; i++)
             {
-                float bulletspread = Random.RandomRange(-bulletSpreadAmount, bulletSpreadAmount);
-                Quaternion bulletRotation = transform.rotation;
-                bulletRotation.y += bulletspread;
-                Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
-                canAttack = false;
-                attackTimeStamp = Time.time + attackCooldownPeriod;
+                currentAngleOffset += BulletSpacing; //increases angle for next bullet
+                createBullet();
             }
         }
         else {
-            float bulletspread = Random.RandomRange(-bulletSpreadAmount, bulletSpreadAmount);
-            Quaternion bulletRotation = transform.rotation;
-            bulletRotation.y += bulletspread;
-            Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
-            canAttack = false;
-            attackTimeStamp = Time.time + attackCooldownPeriod;
+            createBullet();
         }
         weaponAmmo--; // enable it later
         if (weaponAmmo <= 0)                                                        // reloads weapon for you if you hit 0 after firing
         {
             ReloadSequence();
         }
+        ResetAngleOffset();
     }
 
-    public bool IsOdd(int value)
+    private void createBullet()
+    {
+        float bulletspread = Random.RandomRange(-bulletSpreadAmount, bulletSpreadAmount);
+        Quaternion bulletRotation = transform.rotation;
+        bulletRotation.y += bulletspread;
+        if (multipleProjectiles == true && isShotgun == false)
+        {
+            bulletRotation.y = bulletRotation.y + currentAngleOffset;
+        }
+        Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
+        canAttack = false;
+        attackTimeStamp = Time.time + attackCooldownPeriod;
+    }
+
+    private bool IsOdd(int value)
     {
         return value % 2 != 0;
+    }
+
+    private void ResetAngleOffset()
+    {
+        currentAngleOffset = -(BulletSpacing * projectileAmount) / Mathf.PI * 2; // still not perfect but margin of error is small enough for now
     }
 }

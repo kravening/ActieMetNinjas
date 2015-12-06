@@ -8,7 +8,6 @@ public enum WeaponType
 }
 public class WeaponBase : MonoBehaviour {//setting up some base variables for the weapon
     //Weapon Modifiers
-    [SerializeField]protected float weaponDamage;   // damage of the weapon
     [SerializeField]protected int weaponAmmo;  //ammo of the weapon
     [SerializeField]protected int baseWeaponAmmo;  //ammo of the weapon
     [SerializeField]protected float attackCooldownPeriod; // "attackSpeed" of the weapon
