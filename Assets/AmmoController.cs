@@ -3,26 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class AmmoController : MonoBehaviour {// script for keeping track of ammo
-    private List<string> ammoTypes = new List<string>();
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public int playerAmmo = 200;
+    public int PlayerAmmo { get; set; }
 
-    public void RemoveAmmo()
+    void Start()
     {
-
-
+        PlayerAmmo = playerAmmo;
     }
 
-    public void AddAmmo() // for pickups
+    void Update()
     {
-
-
+        playerAmmo = PlayerAmmo;
     }
 }
