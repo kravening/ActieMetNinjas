@@ -11,8 +11,8 @@ public class WeaponContainer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        weapon.transform.position = this.gameObject.transform.position; // "holds" the weapon
-        weapon.transform.rotation = this.gameObject.transform.rotation; // copy rotation from upper body
+        weapon.transform.position = transform.position; // "holds" the weapon
+        weapon.transform.rotation = transform.rotation; // copy rotation from upper body
 	}
 
     public void toggleBool()

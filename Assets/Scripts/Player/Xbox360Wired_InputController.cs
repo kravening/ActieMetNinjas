@@ -236,7 +236,7 @@ public class Xbox360Wired_InputController : MonoBehaviour {
 
     private float CalculateRotation(float X, float Y) // calculates angle based on incoming X & Y values;
     {
-        float angle = Mathf.Atan2(X, Y) * Mathf.Rad2Deg;
+        float angle = (Mathf.Atan2(X, Y) * Mathf.Rad2Deg);
         //Debug.Log(angle);
         return angle;
     }

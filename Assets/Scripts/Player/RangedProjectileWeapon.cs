@@ -32,6 +32,7 @@ public class RangedProjectileWeapon : WeaponBase
     void Update()
     {
         CheckBools();
+        //Debug.Log(BulletSpacing);
     }
     private void CheckBools()
     {
@@ -44,11 +45,11 @@ public class RangedProjectileWeapon : WeaponBase
             isReloading = false;                                                               // you aren't reloading anymore woohoo!
         }
     }
-        
+
     private void ReloadSequence()                                                              // reloads the weapon;
     {
         findPlayer();
-        if (weaponAmmo <= 0 && isPickup == false )                                              //don't reload if object is not equipped, but weapon has to be equipped anyway to be able call this function
+        if (weaponAmmo <= 0 && isPickup == false)                                              //don't reload if object is not equipped, but weapon has to be equipped anyway to be able call this function
         {
             if (ammoController.PlayerAmmo >= 1)                                                // checks if player has any ammo left
             {
@@ -60,7 +61,8 @@ public class RangedProjectileWeapon : WeaponBase
                     weaponAmmo += ammoToBeAdded;                                               // adds ammo to the "clip" based on whats left
                     ammoController.PlayerAmmo = ammoController.PlayerAmmo - ammoToBeAdded;     // should set ammo to 0
                 }
-                else {
+                else
+                {
                     ammoController.PlayerAmmo = ammoController.PlayerAmmo - baseWeaponAmmo;    // removes ammo
                     weaponAmmo = baseWeaponAmmo;                                               // adds ammo to the "clip"
                 }
@@ -110,7 +112,8 @@ public class RangedProjectileWeapon : WeaponBase
 
     public void ManualFire()
     {
-        if (triggerReleased) {
+        if (triggerReleased)
+        {
             triggerReleased = false;
             Fire();
         }
@@ -126,7 +129,8 @@ public class RangedProjectileWeapon : WeaponBase
                 createBullet();
             }
         }
-        else {
+        else
+        {
             createBullet();
         }
         weaponAmmo--; // enable it later
@@ -141,30 +145,21 @@ public class RangedProjectileWeapon : WeaponBase
     {
         float bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
         Quaternion bulletRotation = transform.rotation;
-        bulletRotation.x += bulletspread;
-
         bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
-        bulletRotation.y += bulletspread;
 
-        bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
-        bulletRotation.z += bulletspread;
         if (multipleProjectiles == true && isShotgun == false)
         {
-            bulletRotation.y = bulletRotation.y + currentAngleOffset;
+            //bulletRotation.rotation.y += currentAngleOffset;
         }
         Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
         canAttack = false;
         attackTimeStamp = Time.time + attackCooldownPeriod;
-    }
-
-    private bool IsOdd(int value)
-    {
-        return value % 2 != 0;
+        //Debug.Log(bulletRotation.y);
     }
 
     private void ResetAngleOffset()
     {
-        currentAngleOffset = -(BulletSpacing * projectileAmount) / Mathf.PI * 2; // still not perfect but margin of error is small enough for now
+        currentAngleOffset = -(BulletSpacing * projectileAmount) / 2;//Mathf.PI*2; // still not perfect but margin of error is small enough for now
     }
 
     private float returnRandom(float min, float max)

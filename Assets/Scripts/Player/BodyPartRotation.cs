@@ -69,7 +69,7 @@ public class BodyPartRotation : MonoBehaviour {
     }
    private void CalculateAngle(float incomingRotation)
     {
-        Quaternion rot = Quaternion.Euler(0f, incomingRotation-90f, 0f);
+        Quaternion rot = Quaternion.Euler(0f, incomingRotation, 0f);
         transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * rotationSpeed);
         //Debug.Log(rot);
         //rotate axis based on incoming calculated angle
