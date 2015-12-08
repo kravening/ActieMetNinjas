@@ -1353,9 +1353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665af36d3e3d61c4d9f226e1ab9caccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAmmo: 100
-  baseWeaponAmmo: 100
-  attackCooldownPeriod: .0500000007
+  weaponAmmo: 100000
+  baseWeaponAmmo: 100000
+  attackCooldownPeriod: .5
   reloadTime: 4
   attackTimeStamp: 0
   reloadTimeStamp: 0
@@ -1367,11 +1367,11 @@ MonoBehaviour:
   bullet: {fileID: 162578, guid: c039e184f45f9dd4ba049ad4fce74f1e, type: 2}
   muzzlePosition: {fileID: 85243704}
   currentAngleOffset: 0
-  bulletSpreadAmount: .00999999978
+  bulletSpreadAmount: 0
   multipleProjectiles: 1
   projectileAmount: 10
-  BulletSpacing: 0
-  isShotgun: 1
+  BulletSpacing: .100000001
+  isShotgun: 0
 --- !u!23 &1338705604
 MeshRenderer:
   m_ObjectHideFlags: 0

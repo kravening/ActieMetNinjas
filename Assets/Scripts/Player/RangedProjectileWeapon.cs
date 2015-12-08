@@ -146,10 +146,10 @@ public class RangedProjectileWeapon : WeaponBase
         float bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
         Quaternion bulletRotation = transform.rotation;
         bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
-
+        bulletRotation.y += bulletspread;
         if (multipleProjectiles == true && isShotgun == false)
         {
-            //bulletRotation.rotation.y += currentAngleOffset;
+            bulletRotation.y += currentAngleOffset;
         }
         Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
         canAttack = false;
@@ -159,7 +159,7 @@ public class RangedProjectileWeapon : WeaponBase
 
     private void ResetAngleOffset()
     {
-        currentAngleOffset = -(BulletSpacing * projectileAmount) / 2;//Mathf.PI*2; // still not perfect but margin of error is small enough for now
+        currentAngleOffset = -(BulletSpacing * projectileAmount) / 2; //Mathf.PI*2; // still not perfect but margin of error is small enough for now
     }
 
     private float returnRandom(float min, float max)
