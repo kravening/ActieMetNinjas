@@ -139,9 +139,15 @@ public class RangedProjectileWeapon : WeaponBase
 
     private void createBullet()
     {
-        float bulletspread = Random.RandomRange(-bulletSpreadAmount, bulletSpreadAmount);
+        float bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
         Quaternion bulletRotation = transform.rotation;
+        bulletRotation.x += bulletspread;
+
+        bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
         bulletRotation.y += bulletspread;
+
+        bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
+        bulletRotation.z += bulletspread;
         if (multipleProjectiles == true && isShotgun == false)
         {
             bulletRotation.y = bulletRotation.y + currentAngleOffset;
@@ -159,5 +165,10 @@ public class RangedProjectileWeapon : WeaponBase
     private void ResetAngleOffset()
     {
         currentAngleOffset = -(BulletSpacing * projectileAmount) / Mathf.PI * 2; // still not perfect but margin of error is small enough for now
+    }
+
+    private float returnRandom(float min, float max)
+    {
+        return Random.Range(min, max);
     }
 }

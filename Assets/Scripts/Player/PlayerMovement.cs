@@ -83,4 +83,9 @@ public class PlayerMovement : MonoBehaviour {
             currentMaxMovementSpeed = -maxMovementSpeed * controller.leftStickY; // multiplying by negatives makes positives
         }
     }
+
+    public void knockback()
+    {
+
+    }
 }
