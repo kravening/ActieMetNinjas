@@ -126,7 +126,7 @@ public class RangedProjectileWeapon : WeaponBase
             for (int i = 0; i < projectileAmount; i++)
             {
                 currentAngleOffset += BulletSpacing; //increases angle for next bullet
-                createBullet();
+                createMultiple();
             }
         }
         else
@@ -156,6 +156,16 @@ public class RangedProjectileWeapon : WeaponBase
         attackTimeStamp = Time.time + attackCooldownPeriod;
         //Debug.Log(bulletRotation.y);
     }
+    private void createMultiple()
+    {
+       // float randomNumberY = Random.Range(-bulletSpreadAmount, bulletSpreadAmount); if you want a random spread use this instead of currentAngleoffset
+        GameObject datBullet = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+        datBullet.transform.Rotate(0, currentAngleOffset, 0);
+        // datBullet.transform.Rotate(0, randomNumberY, 0);
+        canAttack = false;
+        attackTimeStamp = Time.time + attackCooldownPeriod;
+    }
+
 
     private void ResetAngleOffset()
     {

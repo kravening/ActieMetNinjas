@@ -1367,10 +1367,10 @@ MonoBehaviour:
   bullet: {fileID: 162578, guid: c039e184f45f9dd4ba049ad4fce74f1e, type: 2}
   muzzlePosition: {fileID: 85243704}
   currentAngleOffset: 0
-  bulletSpreadAmount: 0
+  bulletSpreadAmount: 30
   multipleProjectiles: 1
   projectileAmount: 10
-  BulletSpacing: .100000001
+  BulletSpacing: 5
   isShotgun: 0
 --- !u!23 &1338705604
 MeshRenderer:
