@@ -7,6 +7,7 @@ public class MpOnConnect : MonoBehaviour {
 	void OnJoinedRoom()
 	{
 		CreatePlayerObject();
+		Debug.Log("playerJoined");
 	}
 
 	void CreatePlayerObject()
