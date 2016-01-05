@@ -41,6 +41,9 @@ public class WeaponBase : MonoBehaviour {//setting up some base variables for th
         if (!playerFound)
         {
             ammoController = GameObject.FindGameObjectWithTag("Player").GetComponent<AmmoController>();
+			if(ammoController == null){
+				Debug.Log("ayyy");
+			}
         }
     }
 }

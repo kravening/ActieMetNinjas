@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Corridor
   - Wall
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

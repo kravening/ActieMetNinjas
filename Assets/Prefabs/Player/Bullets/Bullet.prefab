@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423138}
   - 108: {fileID: 10849322}
+  - 114: {fileID: 11447326}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -26,8 +27,7 @@ GameObject:
   - 4: {fileID: 415340}
   - 198: {fileID: 19838402}
   - 199: {fileID: 19954226}
-  - 114: {fileID: 11447284}
-  - 120: {fileID: 12090498}
+  - 114: {fileID: 11418028}
   m_Layer: 8
   m_Name: BulletParticles
   m_TagString: Untagged
@@ -53,7 +53,7 @@ GameObject:
   - 114: {fileID: 11481748}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Player
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 162294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 498710}
   m_RootOrder: 0
@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 162578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.69000006, z: 0}
-  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children:
   - {fileID: 415340}
   - {fileID: 423138}
@@ -106,7 +106,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: c77c925ee80739e4d8ae2d03decfb42a, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -165,13 +165,13 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 2
+  m_Color: {r: .556862772, g: .807843208, b: .917647123, a: 1}
+  m_Intensity: 2
+  m_Range: 5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
@@ -182,12 +182,23 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 4
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11418028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93d6f13067a68e40808da274b1ddaf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11432494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,17 +211,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: .5
---- !u!114 &11447284
+--- !u!114 &11447326
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162294}
+  m_GameObject: {fileID: 113332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f93d6f13067a68e40808da274b1ddaf6, type: 3}
+  m_Script: {fileID: 11500000, guid: ba206ee2388c01e489dcec4d7e8aeba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startIntensity: 8
+  _startRange: 8
+  _intensityFallOff: 50
+  _rangeFallOff: 50
 --- !u!114 &11456070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,45 +264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles:
   - {fileID: 19813620, guid: 4e90c8d993141e94494ba4a151c7b275, type: 2}
---- !u!120 &12090498
-LineRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162294}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 498710}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    startWidth: 1
-    endWidth: 0
-    m_StartColor:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_EndColor:
-      serializedVersion: 2
-      rgba: 4294967295
-  m_UseWorldSpace: 1
 --- !u!198 &19838402
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -442,10 +418,10 @@ ParticleSystem:
         rgba: 4281859840
       maxColor:
         serializedVersion: 2
-        rgba: 4294967295
+        rgba: 4293572985
       minMaxState: 0
     startSize:
-      scalar: .25
+      scalar: .075000003
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -502,7 +478,7 @@ ParticleSystem:
       minMaxState: 3
     gravityModifier: 1
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 1000000000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -521,7 +497,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 100
+      scalar: 75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -553,7 +529,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 30
+    cnt0: 1
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -561,7 +537,7 @@ ParticleSystem:
     time1: 0
     time2: 0
     time3: 0
-    m_BurstCount: 0
+    m_BurstCount: 1
   SizeModule:
     enabled: 1
     curve:
@@ -1402,15 +1378,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
-      value: .25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
-      value: .25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
-      value: .25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: tags.Array.data[0]
@@ -1444,6 +1420,134 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _intensityFallOff
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _rangeFallOff
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _startRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _startIntensity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Parameters.endWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Parameters.startWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ProbeAnchor
+      value: 
+      objectReference: {fileID: 498710}
+    - target: {fileID: 0}
+      propertyPath: m_Autodestruct
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EndWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Time
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StartWidth
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EmissionModule.rate.scalar
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967039
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialModule.startSize.scalar
+      value: .075000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4293572985
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: .556862772
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: .807843208
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: .917647123
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EmissionModule.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EmissionModule.cnt0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

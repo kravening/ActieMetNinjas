@@ -7,7 +7,7 @@ public class ParticlePrefabSpawner : MonoBehaviour {
 
     public void SpawnParticleFromList(int index, Transform trans)
     {
-        //if(particles[index] != null)
+        if(particles[index] != null)
         Instantiate(particles[index], trans.position, trans.rotation);
     }
 }

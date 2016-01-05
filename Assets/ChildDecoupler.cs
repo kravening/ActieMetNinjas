@@ -6,7 +6,9 @@ public class ChildDecoupler : MonoBehaviour {
 
     public void DeCoupler()
     {
-        emitter.transform.parent = null;
-        emitter.emissionRate = 0;
+		if (emitter != null) {
+			emitter.transform.parent = null;
+			emitter.emissionRate = 0;
+		}
     }
 }
