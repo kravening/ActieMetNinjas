@@ -126,7 +126,7 @@ public class RangedProjectileWeapon : WeaponBase
             for (int i = 0; i < projectileAmount; i++)
             {
                 currentAngleOffset += BulletSpacing; //increases angle for next bullet
-                createBullet();
+                createMultiple();
             }
         }
         else
@@ -140,18 +140,28 @@ public class RangedProjectileWeapon : WeaponBase
         }
         ResetAngleOffset();
     }
+
     private void createBullet()
     {
-        GameObject pBullet = Instantiate(bullet, muzzlePosition.transform.position, transform.rotation) as GameObject;
+        float bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
+        Quaternion bulletRotation = transform.rotation;
+        bulletspread = returnRandom(-bulletSpreadAmount, bulletSpreadAmount);
+        bulletRotation.y += bulletspread;
         if (multipleProjectiles == true && isShotgun == false)
         {
-            pBullet.transform.Rotate(0, currentAngleOffset, 0);
+            bulletRotation.y += currentAngleOffset;
         }
-        else
-        {
-            float randomNumberY = Random.Range(-bulletSpreadAmount, bulletSpreadAmount);
-            pBullet.transform.Rotate(0, randomNumberY, 0);
-        }
+        Instantiate(bullet, muzzlePosition.transform.position, bulletRotation);
+        canAttack = false;
+        attackTimeStamp = Time.time + attackCooldownPeriod;
+        //Debug.Log(bulletRotation.y);
+    }
+    private void createMultiple()
+    {
+       // float randomNumberY = Random.Range(-bulletSpreadAmount, bulletSpreadAmount); if you want a random spread use this instead of currentAngleoffset
+        GameObject datBullet = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+        datBullet.transform.Rotate(0, currentAngleOffset, 0);
+        // datBullet.transform.Rotate(0, randomNumberY, 0);
         canAttack = false;
         attackTimeStamp = Time.time + attackCooldownPeriod;
     }
@@ -159,7 +169,7 @@ public class RangedProjectileWeapon : WeaponBase
 
     private void ResetAngleOffset()
     {
-        currentAngleOffset = -(BulletSpacing * projectileAmount) / 2; //create offset based on total rotation to be made
+        currentAngleOffset = -(BulletSpacing * projectileAmount) / 2; //Mathf.PI*2; // still not perfect but margin of error is small enough for now
     }
 
     private float returnRandom(float min, float max)

@@ -1,20 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class DestroyOnCollision : MonoBehaviour
-{
-    [SerializeField]private List<string> tags = new List<string>();
+public class DestroyOnCollision : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < tags.Count; i++)
-        {
-            if (other.gameObject.tag == tags[i])
-            {
-                GetComponent<ChildDecoupler>().DeCoupler();
-                Destroy(this.gameObject);
-                break;
-            }
+        if (other.gameObject.tag != "Player") {
+            Destroy(this.gameObject);
         }
     }
 }
