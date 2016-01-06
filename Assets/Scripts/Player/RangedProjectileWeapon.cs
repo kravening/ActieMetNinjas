@@ -9,6 +9,7 @@ public class RangedProjectileWeapon : WeaponBase
     private GameObject muzzlePosition;
     [SerializeField]
     private float currentAngleOffset;
+	[SerializeField]private ParticleSystem muzzleFlash;
 
     // behaviour Modifiers
     [SerializeField]
@@ -91,6 +92,11 @@ public class RangedProjectileWeapon : WeaponBase
                     {
                         ManualFire();
                     }
+					if(muzzleFlash != null){
+					Instantiate(muzzleFlash,muzzlePosition.transform.position,Quaternion.identity);
+					}else{
+					Debug.Log("no muzzleflash reference");
+					}
                 }
             }
         }

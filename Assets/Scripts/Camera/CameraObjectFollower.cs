@@ -8,6 +8,7 @@ public class CameraObjectFollower : MonoBehaviour {
     [SerializeField]private float cameraHeight; // should be zoomed in if player is in a corridor for le epic effect;
 	[SerializeField]private float minClamp;
 	[SerializeField]private float maxClamp;
+	[SerializeField]private ParticleSystem muzzleFlash;
 
     private CorridorCheck check;
 

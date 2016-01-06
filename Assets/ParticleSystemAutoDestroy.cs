@@ -3,14 +3,14 @@ using System.Collections;
 
 public class ParticleSystemAutoDestroy : MonoBehaviour {
     private ParticleSystem emitter;
-	private float DestroyDelay = 1f;
+	private float destroyDelay = 1f;
 	// Use this for initialization
 	void Start () {
-		DestroyDelay += Time.time;
+		destroyDelay = destroyDelay + Time.time;
         emitter = this.gameObject.GetComponent<ParticleSystem>();
 	}
 	void FixedUpdate() {
-        if (emitter.particleCount <= 0 && DestroyDelay >= Time.time)
+        if (emitter.particleCount <= 0)
         {
             Destroy(this.gameObject);
         }
